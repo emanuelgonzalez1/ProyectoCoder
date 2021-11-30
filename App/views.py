@@ -19,3 +19,7 @@ def profesinales(request):
 def entregas(request):
     
     return render(request, 'App/entregas.html')
+
+def link4(request):
+    
+    return render(request, 'App/link4.html')
