@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Profesional</title>
+</head>
+<body>
+    {% if profesional %}
+        <p> 
+            {{profesional.nombre}} {{profesional.apellido}} {{profesional.email}} {{profesional.profesion}}
+        </p>
+    {% endif %}
+    <form action= "" method="POST">
+        {%csrf_token%}
+        <table>
+
+            {{formulario1.as_table}}
+        
+        </table>
+        <input type="submit", value="Enviar">
+{% comment %} 
+        <p>Nombre:
+            <input type="text" name="nombre">
+        </p>
+        <p>Apellido:
+            <input type="text" name="apellido">
+        </p>
+        <p>Telefono:
+            <input type="telefono" name="telefono">
+        </p>
+        <p>Cuit:
+            <input type="cuit" name="cuit">
+         </p>
+         <input type="submit" placeholder="Enviar"> {% endcomment %}
+    </form>
+</body>
+</html>

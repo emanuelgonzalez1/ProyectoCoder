@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from App.forms import clienteformulario
-from App.models import Cliente
+from App.forms import clienteformulario, entregasformulario, profesionalformulario
+from App.models import Cliente, Entrega, Profesional
 
 
 
@@ -26,21 +26,50 @@ def link4(request):
     
     return render(request, 'App/link4.html')
 
-def crear_cliente(request):
-    
-    return render(request, 'App/crear_cliente.html')
+#def crear_cliente(request):
+#   
+#    return render(request, 'App/crear_cliente.html')
 
 
 cliente = None
-def clienteformulario (request):
+def crear_cliente (request):
     if request.method == 'POST':
         formulario = clienteformulario(request.POST)
         
         if formulario.is_valid():
             datoscliente = formulario.cleaned_data
-            cliente = Cliente (nombre = datoscliente['nombre'], apellido = datoscliente['apellido'], email = datoscliente['email'], cuit = datoscliente['cuit'])
+            cliente = Cliente (nombre = datoscliente['nombre'], apellido = datoscliente['apellido'], telefono = datoscliente['telefono'], cuit = datoscliente['cuit'])
             cliente.save()
         return render(request, 'App/index.html')
     else:
         formulario = clienteformulario()
     return render(request, 'App/crear_cliente.html', {'formulario': formulario})
+
+profesional = None
+def crear_profesional (request):
+    if request.method == 'POST':
+        formulario1 = profesionalformulario(request.POST)
+        
+        if formulario1.is_valid():
+            datosprofesional = formulario1.cleaned_data
+            profesional = Profesional (nombre = datosprofesional['nombre'], apellido = datosprofesional['apellido'], email = datosprofesional['email'], profesion = datosprofesional['profesion'])
+            profesional.save()
+        return render (request, 'App/index.html')
+    else:
+        formulario1 = profesionalformulario()
+    return render(request, 'App/crear_profesional.html', {'formulario1':formulario1})
+
+entregas = None
+def crear_entregas(request):
+    if request.method == 'POST':
+        formulario2 = entregasformulario(request.POST)
+        
+        if formulario2.is_valid():
+            datosentrega = formulario2.cleaned_data
+            entrega = Entrega (nombre_entrega = datosentrega['nombre_entrega'], fechadevencimiento = datosentrega['fecha_limite'], entregado = datosentrega['entregado'])
+            entrega.save()
+        return render(request, 'App/index.html')
+    else:
+        formulario2 = entregasformulario()
+    return render(request, 'App/crear_entrega.html', {'formulario2':formulario2})
+

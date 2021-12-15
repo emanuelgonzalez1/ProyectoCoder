@@ -5,7 +5,7 @@ class Cliente(models.Model):
     
     nombre = models.CharField(max_length=40)
     apellido = models.CharField(max_length=40)
-    email = models.EmailField()
+    telefono = models.IntegerField()
     cuit = models.IntegerField()
     
 class Profesional(models.Model):
@@ -13,6 +13,7 @@ class Profesional(models.Model):
     nombre = models.CharField(max_length=40)
     apellido = models.CharField(max_length=40)
     email = models.EmailField()
+    profesion = models.CharField(max_length=50)
     
 class Entrega(models.Model):
     
