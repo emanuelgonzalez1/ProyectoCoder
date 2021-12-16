@@ -73,3 +73,19 @@ def crear_entregas(request):
         formulario2 = entregasformulario()
     return render(request, 'App/crear_entrega.html', {'formulario2':formulario2})
 
+def busquedaCliente(request):
+    
+    return render (request, "App/busquedaCliente.html")
+
+def buscar(request):
+    
+    if request.GET['cuit']:
+        cuit=request.GET['cuit']
+        cliente = Cliente.objects.filter(cuit__icontains= cuit)
+        
+        return render (request, 'App/resultadoBusqueda.html', {'cliente':cliente, 'cuit':cuit})
+    
+    else:
+        respuesta = 'No enviaste ningun dato'
+        
+    return HttpResponse(respuesta)
