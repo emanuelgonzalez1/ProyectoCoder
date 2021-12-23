@@ -2,7 +2,9 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from App.forms import clienteformulario, entregasformulario, profesionalformulario
 from App.models import Cliente, Entrega, Profesional
-
+from django.views.generic import ListView, DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 
 
 # Create your views here.
@@ -89,3 +91,27 @@ def buscar(request):
         respuesta = 'No enviaste ningun dato'
         
     return HttpResponse(respuesta)
+
+
+class ClienteList(ListView):
+    model = Cliente
+    template_name = 'App/cliente_list.html'
+    
+class ClienteDetail(DetailView):
+    model = Cliente
+    template_name = 'App/cliente_detail.html'
+    
+class ClienteCreate(CreateView):
+    model = Cliente
+    success_url = 'App/cliente/list'
+    fields = ['nombre', 'apellido', 'telefono', 'cuit']
+    
+class ClienteUpdate(UpdateView):
+    model = Cliente
+    success_url = 'App/cliente/list'
+    fields = ['nombre', 'apellido', 'telefono', 'cuit']
+    
+class ClienteDelete(DeleteView):
+    model = Cliente
+    success_url = 'App/cliente/list'
+    

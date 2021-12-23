@@ -9,7 +9,7 @@ class Cliente(models.Model):
     cuit = models.IntegerField()
     
     def __str__(self):
-        return f'Nombre: {self.nombre} - Apellido: {self.apellido} - Telefono: {self.telefono} - Cuit: {self.cuit}'
+        return f'Nombre: {self.nombre} - Apellido: {self.apellido} - Cuit: {self.cuit}'
     
 class Profesional(models.Model):
     
@@ -19,7 +19,7 @@ class Profesional(models.Model):
     profesion = models.CharField(max_length=50)
     
     def __str__(self):
-        return f'Nombre: {self.nombre} - Apellido: {self.apellido} - Email: {self.email} - Profesión: {self.profesion}'
+        return f'Nombre: {self.nombre} - Apellido: {self.apellido} - Profesión: {self.profesion}'
     
 class Entrega(models.Model):
     
