@@ -1,13 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from App.forms import clienteformulario, entregasformulario, profesionalformulario
+from App.forms import clienteformulario, entregasformulario, profesionalformulario, RegistroUsuarioForm
 from App.models import Cliente, Entrega, Profesional
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login,logout,authenticate
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 
@@ -148,7 +148,7 @@ def register (request):
     
     if request.method == 'POST':
         
-        form = UserCreationForm(request.POST)
+        form = RegistroUsuarioForm(request.POST)
         
         if form.is_valid():
             
@@ -157,7 +157,7 @@ def register (request):
             return render (request, 'App/index.html', {"mensaje":"Usuario Creado :D"})
     
     else:
-        form = UserCreationForm()
+        form = RegistroUsuarioForm()
     
     return render(request, 'App/registro.html',{"form": form})
             
