@@ -20,5 +20,5 @@ from .views import fecha_actual, probandoTemplate, saludo, otravista
 urlpatterns = [
     path('admin/', admin.site.urls),
     
-    path('App/', include('App.urls')),
+    path('', include('App.urls')),
 ]
