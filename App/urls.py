@@ -7,7 +7,6 @@ urlpatterns = [
     path('clientes/', views.clientes, name='clientes'),
     path('profesionales/', views.profesinales, name='profesionales'),
     # path('entregas/', views.entregas, name='entregas'),
-    path('link4/', views.link4, name='link4'),
     path('crear_cliente/', views.crear_cliente, name='crear_cliente'),
     path('crear_profesional/', views.crear_profesional, name='crear_profesional'),
     path('crear_entrega/', views.crear_entregas, name='crear_entrega'),
@@ -22,4 +21,5 @@ urlpatterns = [
     path('login', views.login_request, name='Login'),
     path('register', views.register, name='Register'),
     path('logout', LogoutView.as_view(template_name = 'App/logout.html'), name = 'Logout'),
+    path('editarperfil', views.editarperfil, name = "EditarPerfil"),
 ]

@@ -1,14 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from App.forms import clienteformulario, entregasformulario, profesionalformulario, RegistroUsuarioForm
+from App.forms import clienteformulario, entregasformulario, profesionalformulario, RegistroUsuarioForm, UserEditForm
 from App.models import Cliente, Entrega, Profesional
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login,logout,authenticate
-from django.contrib.auth.mixins import LoginRequiredMixin
-
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -28,9 +27,6 @@ def entregas(request):
     
     return render(request, 'App/entregas.html')
 
-def link4(request):
-    
-    return render(request, 'App/link4.html')
 
 #def crear_cliente(request):
 #   
@@ -128,7 +124,7 @@ def login_request(request):
             usuario = form.cleaned_data.get('username')
             contraseña = form.cleaned_data.get('password')
             
-            user = authenticate(username = 'usuario', password = 'contraseña')
+            user = authenticate(username = usuario, password = contraseña)
             
             if user is not None:
                 login(request, user)
@@ -160,4 +156,28 @@ def register (request):
         form = RegistroUsuarioForm()
     
     return render(request, 'App/registro.html',{"form": form})
+            
+
+@login_required
+def editarperfil(request):
+    
+    usuario = request.user
+    
+    if request.method == 'POST':
+        miFormulario = UserEditForm(request.POST)
+        if miFormulario.is_valid:
+            
+            informacion = miFormulario.cleaned_data
+            
+            usuario.email = informacion['email']
+            usuario.password1 = informacion['password1']
+            usuario.password2 = informacion['password2']
+            usuario.save()
+            
+            return render (request, "App/index.html")
+    
+    else:
+        miFormulario = UserEditForm(initial = {'email':usuario.email})
+    
+    return render(request, "App/editar_perfil.html", {"miFormulario":miFormulario, "usuario":usuario})
             
