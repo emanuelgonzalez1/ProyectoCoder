@@ -8,6 +8,12 @@
     <title>Crear Cliente</title>
 </head>
 <body>
+    <nav class="navbar navbar-light bg-light static-top">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'index' %}">Inicio</a>
+        </div>
+    </nav>
+    
     {% if cliente %}
         <p> 
             {{cliente.nombre}} {{cliente.apellido}} {{cliente.email}} {{cliente.cuit}} 
