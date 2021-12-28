@@ -7,10 +7,16 @@
     <title>Cliente Borrar</title>
 </head>
 <body>
+    <nav class="navbar navbar-light bg-light static-top">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'index' %}">Inicio</a>
+            <a class="navbar-brand" href="{% url 'List' %}">Clientes</a>
+        </div>
+    </nav>  
     
 
     <form method="post">{% csrf_token %}
-        ¿Estás seguro que deseas borrar el curso "{{ object }}"?
+        ¿Estás seguro que deseas borrar el cliente "{{ object }}"?
         <input type="submit" value="Submit" />
     </form>
 

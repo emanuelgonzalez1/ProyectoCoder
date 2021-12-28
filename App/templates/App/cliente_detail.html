@@ -7,6 +7,12 @@
     <title>Cliente Detalle</title>
 </head>
 <body>
+    <nav class="navbar navbar-light bg-light static-top">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'index' %}">Inicio</a>
+            <a class="navbar-brand" href="{% url 'List' %}">Clientes</a>
+        </div>
+    </nav>  
     
 
     <p>Nombre del Cliente: <i> {{cliente.nombre}}</i></p>

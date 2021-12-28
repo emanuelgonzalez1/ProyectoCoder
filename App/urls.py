@@ -18,6 +18,12 @@ urlpatterns = [
     path(r'^nuevo$', views.ClienteCreate.as_view(), name='Create'),
     path(r'^editar/(?P<pk>\d+)$', views.ClienteUpdate.as_view(), name='Edit'),
     path(r'^borrar/(?P<pk>\d+)$', views.ClienteDelete.as_view(), name='Delete'),
+    #prueba entrega
+    path('entregalist', views.EntregaList.as_view(), name='EntregaList'),
+    path(r'^(?P<pk>\d+)$', views.EntregaDetail.as_view(), name='EntregaDetail'),
+    path(r'^nuevo$', views.EntregaCreate.as_view(), name='EntregaCreate'),
+    path(r'^editar/(?P<pk>\d+)$', views.EntregaUpdate.as_view(), name='EntregaEdit'),
+    path(r'^borrar/(?P<pk>\d+)$', views.EntregaDelete.as_view(), name='EntregaDelete'),
     path('login', views.login_request, name='Login'),
     path('register', views.register, name='Register'),
     path('logout', LogoutView.as_view(template_name = 'App/logout.html'), name = 'Logout'),

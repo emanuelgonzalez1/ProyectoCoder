@@ -92,7 +92,27 @@ def buscar(request):
         
     return HttpResponse(respuesta)
 
-
+class EntregaList(ListView):
+    model = Entrega
+    template_name = 'App/entrega_list.html'
+    
+class EntregaDetail(DetailView):
+    model = Entrega
+    template_name = 'App/entrega_detail.html'
+    
+class EntregaCreate(CreateView):
+    model = Entrega
+    success_url = 'App/entregalist'
+    fields = ['nombre_entrega', 'fechadevencimiento', 'entregado']
+    
+class EntregaUpdate(UpdateView):
+    model = Entrega
+    success_url = 'App/entregalist'
+    fields = ['nombre_entrega', 'fechadevencimiento', 'entregado']
+    
+class EntregaDelete(DeleteView):
+    model = Entrega
+    success_url = 'App/entregalist'
 class ClienteList(ListView):
     model = Cliente
     template_name = 'App/cliente_list.html'
